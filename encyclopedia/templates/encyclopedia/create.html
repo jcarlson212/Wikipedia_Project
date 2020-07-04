@@ -9,7 +9,7 @@
 
     <form action="{% url 'create' %}" method="POST">
         <input type="text" placeholder="Title" name="title">
-        <input type="text" placeholder="Entry" name="entry">
+        <textarea id="entry" name="entry" rows="4" cols="50">Type the content of your page here!</textarea>
         <input type="submit">
         {% csrf_token %}
     </form>
