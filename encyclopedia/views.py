@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from . import util
 import random
-
-
+import markdown2
+from markdown2 import Markdown
 
 def index(request):
     if request.method == "POST":
@@ -20,8 +20,9 @@ def index(request):
 def entryPage(request, title):
     entry = util.get_entry(title)
     if entry != None:
+        markdowner = Markdown()
         return render(request, "encyclopedia/entry.html", {
-            "entry": entry,
+            "entry": markdowner.convert(entry),
             "title": title
         })
     else:
@@ -53,13 +54,9 @@ def create(request):
 def edit(request, title):
     if request.method == "POST":
         entry = request.POST["entry"]
+        print(entry)
         util.save_entry(title, entry)
-        print("dsfsdf")
-        print(title)
-        print(title)
-        print(title)
         return HttpResponseRedirect("/" + title)
-    print("sdfsdf")
     entry = util.get_entry(title)
     if entry != None:
         return render(request, "encyclopedia/edit.html", {
@@ -76,7 +73,3 @@ def randomPage(request):
     randNum = random.randint(0, len(elements) - 1)
     title = elements[randNum]
     return entryPage(request, title)
-    return render(request, "encyclopedia/entry.html", {
-        "entry": util.get_entry(title),
-        "title": title
-    })

@@ -8,7 +8,7 @@
     <h1>Edit {{ title }}</h1>
 
     <form action="" method="POST">
-        <textarea id="entry" name="entry" rows="4" cols="50">{{ entry }}</textarea>
+        <textarea id="entry" name="entry" >{{ entry }}</textarea>
         <input type="submit">
         {% csrf_token %}
     </form>

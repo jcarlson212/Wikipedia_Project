@@ -5,7 +5,11 @@
 {% endblock %}
 
 {% block body %}
+<div>
+    {% autoescape off %}
+    {{ entry }}
+    {% endautoescape %}
+</div>
 
-{{ entry }}
 <a href="edit/{{ title }}">Edit {{ title }}.</a>
 {% endblock %}
