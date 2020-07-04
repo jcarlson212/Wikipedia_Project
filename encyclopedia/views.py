@@ -10,9 +10,9 @@ def index(request):
     if request.method == "POST":
         print(request.POST["q"])
         if util.get_entry(request.POST["q"]) != None:
-            return HttpResponseRedirect("/"+request.POST["q"])
+            return HttpResponseRedirect("/wiki/"+request.POST["q"])
         else:
-            return HttpResponseRedirect("/results/" + request.POST["q"])
+            return HttpResponseRedirect("/wiki/results/" + request.POST["q"])
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
@@ -44,7 +44,7 @@ def create(request):
     if request.method == "POST":
         if util.get_entry(request.POST["title"]) == None:
             util.save_entry(request.POST["title"], request.POST["entry"])
-            return HttpResponseRedirect("/" + request.POST["title"])
+            return HttpResponseRedirect("/wiki/" + request.POST["title"])
         else:
             return render(request, "encyclopedia/error.html", {
                 "error": "Title already exists!"
@@ -56,7 +56,7 @@ def edit(request, title):
         entry = request.POST["entry"]
         print(entry)
         util.save_entry(title, entry)
-        return HttpResponseRedirect("/" + title)
+        return HttpResponseRedirect("/wiki/" + title)
     entry = util.get_entry(title)
     if entry != None:
         return render(request, "encyclopedia/edit.html", {

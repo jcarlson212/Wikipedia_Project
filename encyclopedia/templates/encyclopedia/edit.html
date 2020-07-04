@@ -7,7 +7,7 @@
 {% block body %}
     <h1>Edit {{ title }}</h1>
 
-    <form action="" method="POST">
+    <form action="{% url 'edit' title %}" method="POST">
         <textarea id="entry" name="entry" >{{ entry }}</textarea>
         <input type="submit">
         {% csrf_token %}

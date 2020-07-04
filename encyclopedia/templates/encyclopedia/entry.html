@@ -11,5 +11,5 @@
     {% endautoescape %}
 </div>
 
-<a href="edit/{{ title }}">Edit {{ title }}.</a>
+<a href="{% url 'edit' title %}">Edit {{ title }}.</a>
 {% endblock %}
