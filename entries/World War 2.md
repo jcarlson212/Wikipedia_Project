@@ -1,0 +1,1 @@
+World War 2 was a war. Hitler became the furer of Germany.
